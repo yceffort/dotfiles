@@ -1,0 +1,128 @@
+{
+  "[dockercompose]": {
+    "editor.autoIndent": "advanced",
+    "editor.defaultFormatter": "redhat.vscode-yaml",
+    "editor.insertSpaces": true,
+    "editor.quickSuggestions": {
+      "comments": false,
+      "other": true,
+      "strings": true
+    },
+    "editor.tabSize": 2
+  },
+  "[github-actions-workflow]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "chat.mcp.gallery.enabled": true,
+  "cSpell.userWords": ["cloudinary", "yceffort"],
+  "docker.extension.enableComposeLanguageServer": false,
+  "editor.accessibilitySupport": "off",
+  "editor.autoClosingBrackets": "always",
+  "editor.bracketPairColorization.enabled": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+    "source.fixAll.markdownlint": "explicit",
+    "source.fixAll.prettier": "explicit",
+    "source.fixAll.textlint": "explicit",
+    "source.organizeImports": "explicit",
+    "source.removeUnusedImports": "explicit"
+  },
+  "editor.codeLensFontFamily": "JetBrains Mono",
+  "editor.cursorBlinking": "expand",
+  "editor.cursorSmoothCaretAnimation": "on",
+  "editor.cursorStyle": "underline",
+  "editor.cursorSurroundingLines": 15,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.foldingHighlight": true,
+  "editor.fontFamily": "JetBrains Mono",
+  "editor.fontLigatures": true,
+  "editor.fontSize": 14,
+  "editor.fontWeight": "450",
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "editor.guides.bracketPairs": true,
+  "editor.guides.bracketPairsHorizontal": "active",
+  "editor.guides.highlightActiveIndentation": true,
+  "editor.inlayHints.fontFamily": "JetBrains Mono",
+  "editor.inlineSuggest.enabled": true,
+  "editor.lineHeight": 1.6,
+  "editor.renderLineHighlight": "all",
+  "editor.renderWhitespace": "all",
+  "editor.roundedSelection": true,
+  "editor.smoothScrolling": true,
+  "editor.stickyScroll.enabled": true,
+  "editor.stickyScroll.maxLineCount": 3,
+  "editor.suggest.showReferences": false,
+  "editor.suggestSelection": "first",
+  "editor.tabSize": 2,
+  "editor.unfoldOnClickAfterEndOfLine": true,
+  "editor.wordWrap": "on",
+  "eslint.codeAction.disableRuleComment": {},
+  "eslint.codeAction.showDocumentation": {
+    "enable": true
+  },
+  "eslint.format.enable": true,
+  "eslint.lintTask.enable": true,
+  "eslint.validate": ["javascript"],
+  "explorer.confirmDragAndDrop": false,
+  "files.autoSave": "afterDelay",
+  "files.insertFinalNewline": true,
+  "files.trimTrailingWhitespace": true,
+  "git.autofetch": true,
+  "git.confirmSync": false,
+  "git.suggestSmartCommit": false,
+  "github.copilot.chat.commitMessageGeneration.instructions": [
+    {
+      "text": "내가 작성한 커밋 메시지와 변경사항을 확인해서 한글로 일목요연하게 작성해줘."
+    },
+    {
+      "text": "커밋 메시지는 한줄로 간결하게 작성해줘. 50자를 넘지 않도록 해줘."
+    },
+    {
+      "text": "반드시 커밋 메시지 앞에는 이모지를 넣어줘. 이모지는 가능한 다양하게, 그리고 직관적으로 알 수 있었으면 좋겠어."
+    }
+  ],
+  "github.copilot.chat.virtualTools.threshold": 12,
+  "github.copilot.nextEditSuggestions.enabled": true,
+  "gitlens.views.commits.pullRequests.showForCommits": false,
+  "html.format.preserveNewLines": false,
+  "javascript.preferences.importModuleSpecifier": "non-relative",
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "javascript.validate.enable": false,
+  "markdown.preview.fontFamily": "JetBrains Mono, -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif",
+  "markdown.preview.fontSize": 12,
+  "markdown.preview.lineHeight": 1.2,
+  "markdownlint.run": "onSave",
+  "redhat.telemetry.enabled": false,
+  "security.workspace.trust.untrustedFiles": "newWindow",
+  "stylelint.packageManager": "pnpm",
+  "terminal.integrated.fontFamily": "monospace",
+  "terminal.integrated.inheritEnv": false,
+  "terminal.integrated.shellIntegration.enabled": true,
+  "terminal.integrated.smoothScrolling": true,
+  "todo-tree.general.tags": [
+    "BUG",
+    "HACK",
+    "FIXME",
+    "TODO",
+    "XXX",
+    "[ ]",
+    "[x]"
+  ],
+  "todo-tree.regex.regex": "(//|#|<!--|;|/\\*|^|^\\s*(-|\\d+.))\\s*($TAGS)",
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "typescript.preferences.importModuleSpecifier": "non-relative",
+  "typescript.tsdk": "node_modules/typescript/bin",
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "workbench.colorCustomizations": {},
+  "workbench.colorTheme": "Tokyo Night Storm",
+  "workbench.editor.enablePreview": false,
+  "workbench.editorAssociations": {
+    "*.ipynb": "jupyter-notebook",
+    "*.yml": "default"
+  },
+  "workbench.fontAliasing": "antialiased",
+  "workbench.list.smoothScrolling": true,
+  "workbench.startupEditor": "none",
+  "vscode-pets.theme": "winter"
+}
