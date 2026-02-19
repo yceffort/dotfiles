@@ -1,6 +1,8 @@
 [user]
 	name = yceffort
 	email = yceffort@gmail.com
+[includeIf "gitdir:~/works/"]
+	path = ~/.gitconfig-works
 [credential "https://github.com"]
 	useHttpPath = true
 	helper =
@@ -12,6 +14,13 @@
 	clean = git-lfs clean -- %f
 [core]
 	excludesfile = ~/.gitignore_global
+	fileMode = false
 [credential "https://gist.github.com"]
+	helper =
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://oss.fin.navercorp.com"]
+	helper =
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://open.oss.navercorp.com"]
 	helper =
 	helper = !/opt/homebrew/bin/gh auth git-credential
