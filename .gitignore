@@ -1,3 +1,5 @@
+.DS_Store
+
 # 전역 gitignore 무시
 !claude/
 !CLAUDE.md
