@@ -18,9 +18,3 @@
 [credential "https://gist.github.com"]
 	helper =
 	helper = !/opt/homebrew/bin/gh auth git-credential
-[credential "https://oss.fin.navercorp.com"]
-	helper =
-	helper = !/opt/homebrew/bin/gh auth git-credential
-[credential "https://open.oss.navercorp.com"]
-	helper =
-	helper = !/opt/homebrew/bin/gh auth git-credential
