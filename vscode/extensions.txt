@@ -1,5 +1,6 @@
 aaron-bond.better-comments
 adpyke.codesnap
+alefragnani.project-manager
 anthropic.claude-code
 aykutsarac.jsoncrack-vscode
 bierner.github-markdown-preview
@@ -12,6 +13,7 @@ bierner.markdown-yaml-preamble
 christian-kohler.npm-intellisense
 davidanson.vscode-markdownlint
 dbaeumer.vscode-eslint
+denoland.vscode-deno
 docker.docker
 eamodio.gitlens
 ecmel.vscode-html-css
@@ -20,11 +22,11 @@ enkia.tokyo-night
 esbenp.prettier-vscode
 firefox-devtools.vscode-firefox-debug
 github.codespaces
-github.copilot
 github.copilot-chat
 github.remotehub
 github.vscode-github-actions
 gruntfuggly.todo-tree
+jakobhoeg.vscode-pokemon
 marp-team.marp-vscode
 mechatroner.rainbow-csv
 mkxml.vscode-filesize
@@ -35,6 +37,7 @@ ms-vscode.remote-repositories
 ms-vsliveshare.vsliveshare
 naumovs.color-highlight
 openai.chatgpt
+pkief.material-icon-theme
 redhat.vscode-yaml
 shd101wyy.markdown-preview-enhanced
 shinotatwu-ds.file-tree-generator
@@ -47,5 +50,6 @@ unifiedjs.vscode-mdx
 usernamehw.errorlens
 vincaslt.highlight-matching-tag
 vitest.explorer
+vscode-icons-team.vscode-icons
 wix.vscode-import-cost
 yzhang.markdown-all-in-one

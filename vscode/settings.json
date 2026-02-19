@@ -6,17 +6,17 @@
     "editor.quickSuggestions": {
       "comments": false,
       "other": true,
-      "strings": true
+      "strings": true,
     },
-    "editor.tabSize": 2
+    "editor.tabSize": 2,
   },
   "[github-actions-workflow]": {
-    "editor.defaultFormatter": "redhat.vscode-yaml"
+    "editor.defaultFormatter": "redhat.vscode-yaml",
   },
   "chat.mcp.gallery.enabled": true,
-  "cSpell.userWords": ["cloudinary", "yceffort"],
+  "cSpell.ignoreWords": ["jandi", "npay", "nlog"],
+  "cSpell.userWords": ["cloudinary", "defign", "naver"],
   "docker.extension.enableComposeLanguageServer": false,
-  "editor.accessibilitySupport": "off",
   "editor.autoClosingBrackets": "always",
   "editor.bracketPairColorization.enabled": true,
   "editor.codeActionsOnSave": {
@@ -25,7 +25,7 @@
     "source.fixAll.prettier": "explicit",
     "source.fixAll.textlint": "explicit",
     "source.organizeImports": "explicit",
-    "source.removeUnusedImports": "explicit"
+    "source.removeUnusedImports": "explicit",
   },
   "editor.codeLensFontFamily": "JetBrains Mono",
   "editor.cursorBlinking": "expand",
@@ -59,7 +59,7 @@
   "editor.wordWrap": "on",
   "eslint.codeAction.disableRuleComment": {},
   "eslint.codeAction.showDocumentation": {
-    "enable": true
+    "enable": true,
   },
   "eslint.format.enable": true,
   "eslint.lintTask.enable": true,
@@ -73,17 +73,23 @@
   "git.suggestSmartCommit": false,
   "github.copilot.chat.commitMessageGeneration.instructions": [
     {
-      "text": "내가 작성한 커밋 메시지와 변경사항을 확인해서 한글로 일목요연하게 작성해줘."
+      "text": "내가 작성한 커밋 메시지와 변경사항을 확인해서 한글로 일목요연하게 작성해줘.",
     },
     {
-      "text": "커밋 메시지는 한줄로 간결하게 작성해줘. 50자를 넘지 않도록 해줘."
+      "text": "커밋 메시지는 한줄로 간결하게 작성해줘. 50자를 넘지 않도록 해줘.",
     },
     {
-      "text": "반드시 커밋 메시지 앞에는 이모지를 넣어줘. 이모지는 가능한 다양하게, 그리고 직관적으로 알 수 있었으면 좋겠어."
-    }
+      "text": "반드시 커밋 메시지 앞에는 이모지를 넣어줘. 이모지는 가능한 다양하게, 그리고 직관적으로 알 수 있었으면 좋겠어.",
+    },
   ],
   "github.copilot.chat.virtualTools.threshold": 12,
   "github.copilot.nextEditSuggestions.enabled": true,
+  "gitlens.remotes": [
+    {
+      "domain": "oss.fin.navercorp.com",
+      "type": "GitHub",
+    },
+  ],
   "gitlens.views.commits.pullRequests.showForCommits": false,
   "html.format.preserveNewLines": false,
   "javascript.preferences.importModuleSpecifier": "non-relative",
@@ -96,7 +102,7 @@
   "redhat.telemetry.enabled": false,
   "security.workspace.trust.untrustedFiles": "newWindow",
   "stylelint.packageManager": "pnpm",
-  "terminal.integrated.fontFamily": "monospace",
+  "terminal.integrated.fontFamily": "JetBrainsMono Nerd Font",
   "terminal.integrated.inheritEnv": false,
   "terminal.integrated.shellIntegration.enabled": true,
   "terminal.integrated.smoothScrolling": true,
@@ -107,7 +113,7 @@
     "TODO",
     "XXX",
     "[ ]",
-    "[x]"
+    "[x]",
   ],
   "todo-tree.regex.regex": "(//|#|<!--|;|/\\*|^|^\\s*(-|\\d+.))\\s*($TAGS)",
   "typescript.enablePromptUseWorkspaceTsdk": true,
@@ -115,14 +121,16 @@
   "typescript.tsdk": "node_modules/typescript/bin",
   "typescript.updateImportsOnFileMove.enabled": "always",
   "workbench.colorCustomizations": {},
-  "workbench.colorTheme": "Tokyo Night Storm",
   "workbench.editor.enablePreview": false,
   "workbench.editorAssociations": {
     "*.ipynb": "jupyter-notebook",
-    "*.yml": "default"
+    "*.yml": "default",
   },
   "workbench.fontAliasing": "antialiased",
   "workbench.list.smoothScrolling": true,
   "workbench.startupEditor": "none",
-  "vscode-pets.theme": "winter"
+  "vscode-pets.theme": "winter",
+  "claudeCode.preferredLocation": "panel",
+  "git.openRepositoryInParentFolders": "always",
+  "claudeCode.selectedModel": "opus",
 }
