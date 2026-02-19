@@ -35,6 +35,15 @@ for cmd in "$DOTFILES_DIR/claude/commands"/*.md; do
 done
 echo "✓ claude 설정 완료"
 
+# starship
+mkdir -p ~/.config
+ln -sf "$DOTFILES_DIR/starship/starship.toml" ~/.config/starship.toml
+echo "✓ starship 설정 완료"
+
+# husky
+ln -sf "$DOTFILES_DIR/husky/.huskyrc" ~/.huskyrc
+echo "✓ husky 설정 완료"
+
 # vscode
 VSCODE_USER_DIR="$HOME/Library/Application Support/Code/User"
 mkdir -p "$VSCODE_USER_DIR"
@@ -56,5 +65,5 @@ echo "=== dotfiles 설치 완료 ==="
 echo ""
 echo "추가 작업:"
 echo "  1. Homebrew 패키지 설치: brew bundle --file=$DOTFILES_DIR/Brewfile"
-echo "  2. 폰트 설치: brew install --cask font-jetbrains-mono"
+echo "  2. 폰트 설치: brew install --cask font-jetbrains-mono-nerd-font"
 echo "  3. 나눔폰트 설치: https://github.com/naver/nanumfont"

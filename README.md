@@ -7,7 +7,7 @@ macOS 개발 환경 설정 파일 모음
 ```
 dotfiles/
 ├── zsh/
-│   ├── .zshrc          # zsh 설정 (oh-my-zsh)
+│   ├── .zshrc          # zsh 설정 (oh-my-zsh + starship)
 │   └── .zprofile       # zsh 프로필
 ├── git/
 │   ├── .gitconfig      # git 설정
@@ -21,6 +21,10 @@ dotfiles/
 │       └── commit.md   # /commit 명령어
 ├── gh/
 │   └── config.yml      # GitHub CLI 설정
+├── starship/
+│   └── starship.toml   # Starship 프롬프트 설정
+├── husky/
+│   └── .huskyrc        # Husky NVM 로더
 ├── vscode/
 │   ├── settings.json   # VSCode 설정
 │   ├── keybindings.json
@@ -60,8 +64,8 @@ brew bundle --file=Brewfile
 ### 4. 폰트 설치
 
 ```bash
-# JetBrains Mono (Brewfile에 포함됨)
-brew install --cask font-jetbrains-mono
+# JetBrains Mono Nerd Font (Brewfile에 포함됨)
+brew install --cask font-jetbrains-mono-nerd-font
 
 # 나눔고딕코딩
 # https://github.com/naver/nanumfont
@@ -105,10 +109,10 @@ git pull
 
 ## 주요 도구
 
-- **Shell**: zsh + oh-my-zsh (robbyrussell 테마)
+- **Shell**: zsh + oh-my-zsh + Starship (Gruvbox Dark 테마)
 - **Editor**: VSCode (Tokyo Night Storm 테마)
-- **Font**: JetBrains Mono, 나눔고딕코딩, 나눔스퀘어네오
-- **Terminal**: Ghostty
+- **Font**: JetBrains Mono Nerd Font, 나눔고딕코딩, 나눔스퀘어네오
+- **Terminal**: Warp
 - **AI**: Claude Code, GitHub Copilot
 
 ## 참고
