@@ -60,10 +60,34 @@ if command -v code &> /dev/null; then
   echo "✓ vscode 확장 설치 완료"
 fi
 
+# fonts (Homebrew cask에 없는 나눔 폰트)
+FONT_DIR="$HOME/Library/Fonts"
+NANUM_BASE_URL="https://hangeul.naver.com/hangeul_static/webfont/zips"
+FONT_TMPDIR=$(mktemp -d)
+
+install_nanum_font() {
+  local zip_name="$1"
+  local label="$2"
+
+  if ls "$FONT_DIR"/${zip_name%.*}* &>/dev/null; then
+    echo "✓ $label 이미 설치됨 (건너뜀)"
+    return
+  fi
+
+  echo "$label 다운로드 중..."
+  curl -sL "$NANUM_BASE_URL/$zip_name" -o "$FONT_TMPDIR/$zip_name"
+  unzip -qo "$FONT_TMPDIR/$zip_name" -d "$FONT_TMPDIR/${zip_name%.*}"
+  find "$FONT_TMPDIR/${zip_name%.*}" -name '*.otf' -exec cp {} "$FONT_DIR/" \;
+  echo "✓ $label 설치 완료"
+}
+
+install_nanum_font "nanum-barun-gothic.zip" "나눔바른고딕"
+install_nanum_font "NanumHuman.zip" "나눔스퀘어휴먼"
+
+rm -rf "$FONT_TMPDIR"
+
 echo ""
 echo "=== dotfiles 설치 완료 ==="
 echo ""
 echo "추가 작업:"
 echo "  1. Homebrew 패키지 설치: brew bundle --file=$DOTFILES_DIR/Brewfile"
-echo "  2. 폰트 설치: brew install --cask font-jetbrains-mono-nerd-font"
-echo "  3. 나눔폰트 설치: https://github.com/naver/nanumfont"
