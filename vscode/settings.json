@@ -15,7 +15,7 @@
   },
   "chat.mcp.gallery.enabled": true,
   "cSpell.ignoreWords": ["jandi", "npay", "nlog"],
-  "cSpell.userWords": ["cloudinary", "naver"],
+  "cSpell.userWords": ["cloudinary", "defign", "naver"],
   "docker.extension.enableComposeLanguageServer": false,
   "editor.autoClosingBrackets": "always",
   "editor.bracketPairColorization.enabled": true,
@@ -84,6 +84,12 @@
   ],
   "github.copilot.chat.virtualTools.threshold": 12,
   "github.copilot.nextEditSuggestions.enabled": true,
+  "gitlens.remotes": [
+    {
+      "domain": "oss.fin.navercorp.com",
+      "type": "GitHub",
+    },
+  ],
   "gitlens.views.commits.pullRequests.showForCommits": false,
   "html.format.preserveNewLines": false,
   "javascript.preferences.importModuleSpecifier": "non-relative",
