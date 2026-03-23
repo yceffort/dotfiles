@@ -71,10 +71,6 @@ fmt_tokens() {
 
 sep=" ${c_white}|${c_reset} "
 
-printf '%b' "${c_cyan}${model}${c_reset}"
-printf '%b' "$sep"
-printf '%b' "${c_yellow}${now}${c_reset}"
-printf '%b' "$sep"
 printf '%b' "${c_magenta}${dirname}${c_reset}"
 if [ -n "$branch" ]; then
   if [ "$git_dirty" -gt 0 ] 2>/dev/null; then
@@ -83,6 +79,10 @@ if [ -n "$branch" ]; then
     printf '%b' " ${c_blue}(${branch})${c_reset}"
   fi
 fi
+printf '%b' "$sep"
+printf '%b' "${c_cyan}${model}${c_reset}"
+printf '%b' "$sep"
+printf '%b' "${c_yellow}${now}${c_reset}"
 
 if [ -n "$five_pct" ]; then
   printf '%b' "$sep"
