@@ -17,17 +17,5 @@ case ":$PATH:" in
 esac
 
 # PATH
-export PATH="$HOME/.rd/bin:$PATH"
-export PATH="$HOME/n2c:$PATH"
-export PATH="$PATH:$(go env GOPATH)/bin"
-export PATH="$HOME/.codeium/windsurf/bin:$PATH"
-export PATH="$HOME/.antigravity/antigravity/bin:$PATH"
-
 export PATH="$HOME/.local/bin:$PATH"
 
-# kubectl - bypass kuberlr and use specific version
-alias kubectl="$HOME/.kuberlr/darwin-arm64/kubectl1.30.3"
-
-### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
-export PATH="$HOME/.rd/bin:$PATH"
-### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
