@@ -13,11 +13,7 @@
     "padding": 0
   },
   "enabledPlugins": {
-    "naverpay-plugins@naverpay-plugins": false,
-    "code-review@claude-code-plugins": false,
-    "test-hello@test-market": true,
-    "claude-dashboard": true,
-    "claude-hud@claude-hud": true,
+    "code-review@claude-code-plugins": true,
     "frontend-design@claude-plugins-official": true
   },
   "alwaysThinkingEnabled": true,
