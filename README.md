@@ -17,8 +17,14 @@ dotfiles/
 ├── claude/
 │   ├── CLAUDE.md       # Claude Code 전역 지침
 │   ├── settings.json   # Claude Code 설정
-│   └── commands/       # 커스텀 슬래시 명령어
-│       └── commit.md   # /commit 명령어
+│   ├── statusline-command.sh  # 상태줄 스크립트
+│   ├── commands/       # 커스텀 슬래시 명령어
+│   │   └── commit.md   # /commit 명령어
+│   └── skills/         # Claude Code 스킬
+│       ├── find-skills/
+│       ├── finfe-bot/
+│       ├── review-chapter/
+│       └── vercel-react-best-practices/
 ├── gh/
 │   └── config.yml      # GitHub CLI 설정
 ├── starship/
