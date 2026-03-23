@@ -30,6 +30,8 @@ echo "✓ gh 설정 완료"
 mkdir -p ~/.claude/commands
 ln -sf "$DOTFILES_DIR/claude/CLAUDE.md" ~/.claude/CLAUDE.md
 ln -sf "$DOTFILES_DIR/claude/settings.json" ~/.claude/settings.json
+ln -sf "$DOTFILES_DIR/claude/statusline-command.sh" ~/.claude/statusline-command.sh
+ln -sfn "$DOTFILES_DIR/claude/skills" ~/.claude/skills
 for cmd in "$DOTFILES_DIR/claude/commands"/*.md; do
   ln -sf "$cmd" ~/.claude/commands/
 done
