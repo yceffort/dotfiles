@@ -7,72 +7,10 @@
       "mcp__chrome-devtools__new_page"
     ]
   },
-  "model": "opus",
-  "hooks": {
-    "SessionStart": [
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "$HOME/.claude/hooks/peon-ping/peon.sh",
-            "timeout": 10
-          }
-        ]
-      }
-    ],
-    "UserPromptSubmit": [
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "$HOME/.claude/hooks/peon-ping/peon.sh",
-            "timeout": 10
-          }
-        ]
-      }
-    ],
-    "Stop": [
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "$HOME/.claude/hooks/peon-ping/peon.sh",
-            "timeout": 10
-          }
-        ]
-      }
-    ],
-    "Notification": [
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "$HOME/.claude/hooks/peon-ping/peon.sh",
-            "timeout": 10
-          }
-        ]
-      }
-    ],
-    "PermissionRequest": [
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "$HOME/.claude/hooks/peon-ping/peon.sh",
-            "timeout": 10
-          }
-        ]
-      }
-    ]
-  },
   "statusLine": {
     "type": "command",
-    "command": "bash -c '\"$HOME/.nvm/versions/node/v24.13.0/bin/node\" \"$(ls -td ~/.claude/plugins/cache/claude-hud/claude-hud/*/ 2>/dev/null | head -1)dist/index.js\"'"
+    "command": "sh /Users/yceffort/.claude/statusline-command.sh",
+    "padding": 0
   },
   "enabledPlugins": {
     "naverpay-plugins@naverpay-plugins": false,
@@ -82,10 +20,12 @@
     "claude-hud@claude-hud": true,
     "frontend-design@claude-plugins-official": true
   },
-  "effortLevel": "high",
   "alwaysThinkingEnabled": true,
+  "effortLevel": "high",
+  "voiceEnabled": true,
   "feedbackSurveyState": {
     "lastShownTime": 1754097972857
   },
-  "autoApprovals": []
+  "autoApprovals": [],
+  "language": "한국어"
 }
