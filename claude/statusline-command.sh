@@ -2,6 +2,7 @@
 input=$(cat)
 
 model=$(echo "$input" | jq -r '.model.display_name // "unknown"')
+effort=$(jq -r '.effortLevel // "medium"' "$HOME/.claude/settings.json" 2>/dev/null)
 dir=$(echo "$input" | jq -r '.workspace.current_dir // .cwd // ""')
 dirname=$(basename "$dir")
 branch=$(git -C "$dir" --no-optional-locks symbolic-ref --short HEAD 2>/dev/null)
@@ -27,14 +28,6 @@ fi
 
 ctx_used=$(echo "$input" | jq -r '.session.context_window.used_percentage // empty')
 
-last_commit_ts=$(git -C "$dir" --no-optional-locks log -1 --format=%ct 2>/dev/null)
-if [ -n "$last_commit_ts" ]; then
-  ago=$(( $(date +%s) - last_commit_ts ))
-  if [ "$ago" -ge 86400 ]; then last_commit="$(( ago / 86400 ))d ago"
-  elif [ "$ago" -ge 3600 ]; then last_commit="$(( ago / 3600 ))h ago"
-  else last_commit="$(( ago / 60 ))m ago"
-  fi
-fi
 
 git_dirty=$(git -C "$dir" --no-optional-locks status --porcelain 2>/dev/null | wc -l | tr -d ' ')
 
@@ -80,7 +73,7 @@ if [ -n "$branch" ]; then
   fi
 fi
 printf '%b' "$sep"
-printf '%b' "${c_cyan}${model}${c_reset}"
+printf '%b' "${c_cyan}${model}${c_reset} ${c_gray}[${effort}]${c_reset}"
 printf '%b' "$sep"
 printf '%b' "${c_yellow}${now}${c_reset}"
 
@@ -113,10 +106,6 @@ fi
 if [ -n "$ctx_used" ]; then
   printf '%b' "$sep"
   printf '%b' "$(usage_color "$ctx_used")ctx: $(printf '%.0f' "$ctx_used")%${c_reset}"
-fi
-if [ -n "$last_commit" ]; then
-  printf '%b' "$sep"
-  printf '%b' "${c_gray}commit ${last_commit}${c_reset}"
 fi
 
 if [ -n "$node_ver" ]; then
