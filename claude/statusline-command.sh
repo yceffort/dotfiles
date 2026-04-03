@@ -9,16 +9,19 @@ branch=$(git -C "$dir" --no-optional-locks symbolic-ref --short HEAD 2>/dev/null
 now=$(date +%H:%M)
 
 five_pct=$(echo "$input" | jq -r '.rate_limits.five_hour.used_percentage // empty')
+five_reset=$(echo "$input" | jq -r '.rate_limits.five_hour.resets_at // empty')
 week_pct=$(echo "$input" | jq -r '.rate_limits.seven_day.used_percentage // empty')
+week_reset=$(echo "$input" | jq -r '.rate_limits.seven_day.resets_at // empty')
 month_pct=$(echo "$input" | jq -r '.rate_limits.monthly.used_percentage // empty')
+month_reset=$(echo "$input" | jq -r '.rate_limits.monthly.resets_at // empty')
 
-tokens_in=$(echo "$input" | jq -r '.session.tokens_in // empty')
-tokens_out=$(echo "$input" | jq -r '.session.tokens_out // empty')
-cost=$(echo "$input" | jq -r '.session.cost_usd // empty')
+tokens_in=$(echo "$input" | jq -r '.context_window.total_input_tokens // empty')
+tokens_out=$(echo "$input" | jq -r '.context_window.total_output_tokens // empty')
+cost=$(echo "$input" | jq -r '.cost.total_cost_usd // empty')
 
-session_start=$(echo "$input" | jq -r '.session.start_time // empty')
-if [ -n "$session_start" ]; then
-  elapsed=$(( $(date +%s) - ${session_start%.*} ))
+duration_ms=$(echo "$input" | jq -r '.cost.total_duration_ms // empty')
+if [ -n "$duration_ms" ] && [ "$duration_ms" != "0" ]; then
+  elapsed=$(( duration_ms / 1000 ))
   if [ "$elapsed" -ge 3600 ]; then
     session_dur="$(( elapsed / 3600 ))h$(( (elapsed % 3600) / 60 ))m"
   else
@@ -26,7 +29,7 @@ if [ -n "$session_start" ]; then
   fi
 fi
 
-ctx_used=$(echo "$input" | jq -r '.session.context_window.used_percentage // empty')
+ctx_used=$(echo "$input" | jq -r '.context_window.used_percentage // empty')
 
 
 git_dirty=$(git -C "$dir" --no-optional-locks status --porcelain 2>/dev/null | wc -l | tr -d ' ')
@@ -47,7 +50,7 @@ usage_color() {
   pct=$1
   if [ "${pct%.*}" -ge 80 ] 2>/dev/null; then printf '%b' "$c_red"
   elif [ "${pct%.*}" -ge 50 ] 2>/dev/null; then printf '%b' "$c_yellow"
-  else printf '%b' "$c_green"
+  else printf '%b' "\033[38;5;117m"
   fi
 }
 
@@ -64,6 +67,11 @@ fmt_tokens() {
 
 sep=" ${c_white}|${c_reset} "
 
+if [ "$CLAUDE_CONFIG_DIR" = "$HOME/.claude-work" ]; then
+  printf '%b' "🏢 "
+else
+  printf '%b' "🏠 "
+fi
 printf '%b' "${c_magenta}${dirname}${c_reset}"
 if [ -n "$branch" ]; then
   if [ "$git_dirty" -gt 0 ] 2>/dev/null; then
@@ -72,22 +80,36 @@ if [ -n "$branch" ]; then
     printf '%b' " ${c_blue}(${branch})${c_reset}"
   fi
 fi
+if [ -n "$node_ver" ]; then
+  printf '%b' "$sep"
+  printf '%b' "${c_green}${node_ver}${c_reset}"
+fi
 printf '%b' "$sep"
 printf '%b' "${c_cyan}${model}${c_reset} ${c_gray}[${effort}]${c_reset}"
-printf '%b' "$sep"
-printf '%b' "${c_yellow}${now}${c_reset}"
 
 if [ -n "$five_pct" ]; then
   printf '%b' "$sep"
-  printf '%b' "$(usage_color "$five_pct")5h: $(printf '%.0f' "$five_pct")%${c_reset}"
+  five_info="5h: $(printf '%.0f' "$five_pct")%"
+  if [ -n "$five_reset" ]; then
+    five_info="$five_info (~$(date -r "${five_reset%.*}" '+%H:%M'))"
+  fi
+  printf '%b' "$(usage_color "$five_pct")${five_info}${c_reset}"
 fi
 if [ -n "$week_pct" ]; then
   printf '%b' "$sep"
-  printf '%b' "$(usage_color "$week_pct")주간: $(printf '%.0f' "$week_pct")%${c_reset}"
+  week_info="Week: $(printf '%.0f' "$week_pct")%"
+  if [ -n "$week_reset" ]; then
+    week_info="$week_info (~$(date -r "${week_reset%.*}" '+%a %m/%d %H:%M'))"
+  fi
+  printf '%b' "$(usage_color "$week_pct")${week_info}${c_reset}"
 fi
 if [ -n "$month_pct" ]; then
   printf '%b' "$sep"
-  printf '%b' "$(usage_color "$month_pct")월간: $(printf '%.0f' "$month_pct")%${c_reset}"
+  month_info="월간: $(printf '%.0f' "$month_pct")%"
+  if [ -n "$month_reset" ]; then
+    month_info="$month_info (~$(date -r "${month_reset%.*}" '+%m/%d %H:%M'))"
+  fi
+  printf '%b' "$(usage_color "$month_pct")${month_info}${c_reset}"
 fi
 
 if [ -n "$tokens_in" ] && [ -n "$tokens_out" ]; then
@@ -96,7 +118,7 @@ if [ -n "$tokens_in" ] && [ -n "$tokens_out" ]; then
 fi
 if [ -n "$cost" ] && [ "$cost" != "0" ]; then
   printf '%b' "$sep"
-  printf '%b' "${c_green}\$${cost}${c_reset}"
+  printf '%b' "${c_green}\$$(printf '%.2f' "$cost")${c_reset}"
 fi
 
 if [ -n "$session_dur" ]; then
@@ -105,10 +127,6 @@ if [ -n "$session_dur" ]; then
 fi
 if [ -n "$ctx_used" ]; then
   printf '%b' "$sep"
-  printf '%b' "$(usage_color "$ctx_used")ctx: $(printf '%.0f' "$ctx_used")%${c_reset}"
+  printf '%b' "$(usage_color "$ctx_used")context window: $(printf '%.0f' "$ctx_used")%${c_reset}"
 fi
 
-if [ -n "$node_ver" ]; then
-  printf '%b' "$sep"
-  printf '%b' "${c_green}node ${node_ver}${c_reset}"
-fi
