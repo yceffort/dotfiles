@@ -145,4 +145,5 @@
     "https://developer.microsoft.com/json-schemas/": true,
     "https://biomejs.dev": true,
   },
+  "window.autoDetectColorScheme": true,
 }
