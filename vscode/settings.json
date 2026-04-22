@@ -32,7 +32,7 @@
   "editor.cursorSmoothCaretAnimation": "on",
   "editor.cursorStyle": "underline",
   "editor.cursorSurroundingLines": 15,
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
   "editor.foldingHighlight": true,
   "editor.fontFamily": "JetBrainsMono Nerd Font, 나눔고딕코딩",
   "editor.fontLigatures": true,
@@ -146,4 +146,5 @@
     "https://biomejs.dev": true,
   },
   "window.autoDetectColorScheme": true,
+  "biome.requireConfiguration": true,
 }
