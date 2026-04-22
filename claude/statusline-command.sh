@@ -82,13 +82,31 @@ if [ -n "$branch" ]; then
 fi
 if [ -n "$node_ver" ]; then
   printf '%b' "$sep"
-  printf '%b' "${c_green}${node_ver}${c_reset}"
+  printf '%b' "${c_green}node@${node_ver}${c_reset}"
 fi
 printf '%b' "$sep"
-printf '%b' "${c_cyan}${model}${c_reset} ${c_gray}[${effort}]${c_reset}"
+case "$effort" in
+  low)    effort_color="$c_gray" ;;
+  medium) effort_color="$c_blue" ;;
+  high)   effort_color="$c_cyan" ;;
+  xhigh)  effort_color="$c_yellow" ;;
+  max)    effort_color="$c_red" ;;
+  *)      effort_color="$c_gray" ;;
+esac
+printf '%b' "${c_cyan}${model}${c_reset} ${effort_color}[${effort}]${c_reset}"
+
+printf '\n'
+line2_started=0
+line2_sep() {
+  if [ "$line2_started" -eq 0 ]; then
+    line2_started=1
+  else
+    printf '%b' "$sep"
+  fi
+}
 
 if [ -n "$five_pct" ]; then
-  printf '%b' "$sep"
+  line2_sep
   five_info="5h: $(printf '%.0f' "$five_pct")%"
   if [ -n "$five_reset" ]; then
     five_info="$five_info (~$(date -r "${five_reset%.*}" '+%H:%M'))"
@@ -96,7 +114,7 @@ if [ -n "$five_pct" ]; then
   printf '%b' "$(usage_color "$five_pct")${five_info}${c_reset}"
 fi
 if [ -n "$week_pct" ]; then
-  printf '%b' "$sep"
+  line2_sep
   week_info="Week: $(printf '%.0f' "$week_pct")%"
   if [ -n "$week_reset" ]; then
     week_info="$week_info (~$(date -r "${week_reset%.*}" '+%a %m/%d %H:%M'))"
@@ -104,7 +122,7 @@ if [ -n "$week_pct" ]; then
   printf '%b' "$(usage_color "$week_pct")${week_info}${c_reset}"
 fi
 if [ -n "$month_pct" ]; then
-  printf '%b' "$sep"
+  line2_sep
   month_info="월간: $(printf '%.0f' "$month_pct")%"
   if [ -n "$month_reset" ]; then
     month_info="$month_info (~$(date -r "${month_reset%.*}" '+%m/%d %H:%M'))"
@@ -113,20 +131,20 @@ if [ -n "$month_pct" ]; then
 fi
 
 if [ -n "$tokens_in" ] && [ -n "$tokens_out" ]; then
-  printf '%b' "$sep"
+  line2_sep
   printf '%b' "${c_gray}↑$(fmt_tokens "$tokens_in") ↓$(fmt_tokens "$tokens_out")${c_reset}"
 fi
 if [ -n "$cost" ] && [ "$cost" != "0" ]; then
-  printf '%b' "$sep"
+  line2_sep
   printf '%b' "${c_green}\$$(printf '%.2f' "$cost")${c_reset}"
 fi
 
 if [ -n "$session_dur" ]; then
-  printf '%b' "$sep"
+  line2_sep
   printf '%b' "${c_yellow}${session_dur}${c_reset}"
 fi
 if [ -n "$ctx_used" ]; then
-  printf '%b' "$sep"
+  line2_sep
   printf '%b' "$(usage_color "$ctx_used")context window: $(printf '%.0f' "$ctx_used")%${c_reset}"
 fi
 
