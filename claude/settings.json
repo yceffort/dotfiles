@@ -7,13 +7,16 @@
       "mcp__chrome-devtools__new_page"
     ]
   },
+  "model": "opus[1m]",
   "statusLine": {
     "type": "command",
     "command": "sh $HOME/.claude/statusline-command.sh",
     "padding": 0
   },
   "enabledPlugins": {
-    "frontend-design@claude-plugins-official": true
+    "frontend-design@claude-plugins-official": true,
+    "vercel@claude-plugins-official": true,
+    "swift-lsp@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
     "chrome-devtools-plugins": {
@@ -30,6 +33,5 @@
   "feedbackSurveyState": {
     "lastShownTime": 1754097972857
   },
-  "autoApprovals": [],
-  "model": "opus[1m]"
+  "autoApprovals": []
 }
