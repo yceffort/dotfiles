@@ -81,6 +81,12 @@ echo "✓ starship 설정 완료"
 ln -sf "$DOTFILES_DIR/husky/.huskyrc" ~/.huskyrc
 echo "✓ husky 설정 완료"
 
+# ghostty
+GHOSTTY_DIR="$HOME/Library/Application Support/com.mitchellh.ghostty"
+mkdir -p "$GHOSTTY_DIR"
+ln -sf "$DOTFILES_DIR/ghostty/config.ghostty" "$GHOSTTY_DIR/config.ghostty"
+echo "✓ ghostty 설정 완료"
+
 # vscode
 VSCODE_USER_DIR="$HOME/Library/Application Support/Code/User"
 mkdir -p "$VSCODE_USER_DIR"
