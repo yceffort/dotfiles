@@ -22,3 +22,5 @@ export PATH="$HOME/.local/bin:$PATH"
 # Claude Code (회사 계정)
 alias cclaude='CLAUDE_CONFIG_DIR=~/.claude-work claude'
 
+# Local-only secrets / overrides (gitignored)
+[ -f ~/.zshrc.local ] && source ~/.zshrc.local
