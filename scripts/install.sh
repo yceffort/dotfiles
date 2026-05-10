@@ -4,6 +4,22 @@ set -e
 
 DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
+replace_with_symlink() {
+  local source="$1"
+  local target="$2"
+
+  if [ -L "$target" ]; then
+    ln -sfn "$source" "$target"
+    return
+  fi
+
+  if [ -e "$target" ]; then
+    mv "$target" "$target.bak.$(date +%Y%m%d%H%M%S)"
+  fi
+
+  ln -s "$source" "$target"
+}
+
 ensure_uppercase_skill_entrypoints() {
   local skill
 
@@ -49,6 +65,12 @@ for skill in "$DOTFILES_DIR/claude/skills"/*/; do
 done
 ensure_uppercase_skill_entrypoints
 echo "✓ claude 설정 완료"
+
+# codex
+mkdir -p ~/.codex ~/.agents
+ln -sf "$DOTFILES_DIR/claude/CLAUDE.md" ~/.codex/AGENTS.md
+replace_with_symlink "$HOME/.claude/skills" ~/.agents/skills
+echo "✓ codex 설정 완료"
 
 # starship
 mkdir -p ~/.config
