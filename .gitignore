@@ -3,8 +3,3 @@
 # 전역 gitignore 무시
 !claude/
 !CLAUDE.md
-
-# 내부 인프라 정보가 포함된 스킬 (public repo 노출 방지)
-claude/skills/jira/
-claude/skills/confluence-wiki/
-claude/skills/finfe-bot/
