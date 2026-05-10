@@ -4,6 +4,19 @@ set -e
 
 DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
+ensure_uppercase_skill_entrypoints() {
+  local skill
+
+  for skill in "$HOME/.claude/skills"/*/; do
+    [ -d "$skill" ] || continue
+
+    if [ -e "$skill/skill.md" ] && [ -z "$(find "$skill" -maxdepth 1 -name 'SKILL.md' -print -quit)" ]; then
+      mv "$skill/skill.md" "$skill/.skill.md.tmp"
+      mv "$skill/.skill.md.tmp" "$skill/SKILL.md"
+    fi
+  done
+}
+
 echo "=== dotfiles 설치 시작 ==="
 
 # zsh
@@ -27,14 +40,14 @@ ln -sf "$DOTFILES_DIR/gh/config.yml" ~/.config/gh/config.yml
 echo "✓ gh 설정 완료"
 
 # claude
-mkdir -p ~/.claude/commands
 ln -sf "$DOTFILES_DIR/claude/CLAUDE.md" ~/.claude/CLAUDE.md
 ln -sf "$DOTFILES_DIR/claude/settings.json" ~/.claude/settings.json
 ln -sf "$DOTFILES_DIR/claude/statusline-command.sh" ~/.claude/statusline-command.sh
-ln -sfn "$DOTFILES_DIR/claude/skills" ~/.claude/skills
-for cmd in "$DOTFILES_DIR/claude/commands"/*.md; do
-  ln -sf "$cmd" ~/.claude/commands/
+mkdir -p ~/.claude/skills
+for skill in "$DOTFILES_DIR/claude/skills"/*/; do
+  ln -sfn "$skill" ~/.claude/skills/"$(basename "$skill")"
 done
+ensure_uppercase_skill_entrypoints
 echo "✓ claude 설정 완료"
 
 # starship
