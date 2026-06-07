@@ -5,6 +5,9 @@
       "Bash(*)",
       "WebFetch(*)",
       "mcp__chrome-devtools__new_page"
+    ],
+    "additionalDirectories": [
+      "~/works"
     ]
   },
   "model": "opus[1m]",
@@ -29,10 +32,14 @@
   "language": "한국어",
   "alwaysThinkingEnabled": true,
   "effortLevel": "high",
+  "skipWorkflowUsageWarning": true,
+  "theme": "dark-daltonized",
+  "preferredNotifChannel": "iterm2",
   "voiceEnabled": true,
+  "commitAttributionEnabled": false,
+  "prAttributionEnabled": false,
   "feedbackSurveyState": {
     "lastShownTime": 1754097972857
   },
-  "autoApprovals": [],
-  "theme": "dark-daltonized"
+  "autoApprovals": []
 }
