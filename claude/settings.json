@@ -36,10 +36,11 @@
   "theme": "dark-daltonized",
   "preferredNotifChannel": "iterm2",
   "voiceEnabled": true,
-  "commitAttributionEnabled": false,
-  "prAttributionEnabled": false,
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  },
   "feedbackSurveyState": {
     "lastShownTime": 1754097972857
-  },
-  "autoApprovals": []
+  }
 }
