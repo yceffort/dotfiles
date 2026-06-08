@@ -35,6 +35,11 @@
   "skipWorkflowUsageWarning": true,
   "theme": "dark-daltonized",
   "preferredNotifChannel": "iterm2",
+  "voice": {
+    "enabled": true,
+    "mode": "hold"
+  },
+  "agentPushNotifEnabled": true,
   "voiceEnabled": true,
   "attribution": {
     "commit": "",
@@ -42,5 +47,6 @@
   },
   "feedbackSurveyState": {
     "lastShownTime": 1754097972857
-  }
+  },
+  "autoApprovals": []
 }
