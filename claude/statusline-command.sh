@@ -8,6 +8,10 @@ dirname=$(basename "$dir")
 branch=$(git -C "$dir" --no-optional-locks symbolic-ref --short HEAD 2>/dev/null)
 now=$(date +%H:%M)
 
+config_file="${CLAUDE_CONFIG_DIR:+$CLAUDE_CONFIG_DIR/.claude.json}"
+config_file="${config_file:-$HOME/.claude.json}"
+email=$(jq -r '.oauthAccount.emailAddress // empty' "$config_file" 2>/dev/null)
+
 five_pct=$(echo "$input" | jq -r '.rate_limits.five_hour.used_percentage // empty')
 five_reset=$(echo "$input" | jq -r '.rate_limits.five_hour.resets_at // empty')
 week_pct=$(echo "$input" | jq -r '.rate_limits.seven_day.used_percentage // empty')
@@ -67,10 +71,8 @@ fmt_tokens() {
 
 sep=" ${c_white}|${c_reset} "
 
-if [ "$CLAUDE_CONFIG_DIR" = "$HOME/.claude-work" ]; then
-  printf '%b' "🏢 "
-else
-  printf '%b' "🏠 "
+if [ -n "$email" ]; then
+  printf '%b' "\033[38;5;214m${email}${c_reset}$sep"
 fi
 printf '%b' "${c_magenta}${dirname}${c_reset}"
 if [ -n "$branch" ]; then
