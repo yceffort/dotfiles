@@ -47,6 +47,5 @@
   "feedbackSurveyState": {
     "lastShownTime": 1754097972857
   },
-  "autoApprovals": [],
-  "model": "claude-fable-5[1m]"
+  "autoApprovals": []
 }
