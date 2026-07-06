@@ -36,7 +36,23 @@ fi
 ctx_used=$(echo "$input" | jq -r '.context_window.used_percentage // empty')
 
 
-git_dirty=$(git -C "$dir" --no-optional-locks status --porcelain 2>/dev/null | wc -l | tr -d ' ')
+git_counts=$(git -C "$dir" --no-optional-locks status --porcelain 2>/dev/null | awk '
+  NF==0 { next }
+  {
+    x=substr($0,1,1); y=substr($0,2,1)
+    if (x=="?") u++
+    else if (x=="D" || y=="D") d++
+    else if (x!=" ") s++
+    else m++
+  }
+  END { printf "%d %d %d %d", u+0, s+0, m+0, d+0 }
+')
+set -- $git_counts
+git_untracked=$1; git_staged=$2; git_modified=$3; git_deleted=$4
+
+git_ab=$(git -C "$dir" --no-optional-locks rev-list --left-right --count @{upstream}...HEAD 2>/dev/null)
+git_behind=$(echo "$git_ab" | cut -f1)
+git_ahead=$(echo "$git_ab" | cut -f2)
 
 node_ver=$(node -v 2>/dev/null | tr -d 'v')
 
@@ -76,11 +92,26 @@ if [ -n "$email" ]; then
 fi
 printf '%b' "${c_magenta}${dirname}${c_reset}"
 if [ -n "$branch" ]; then
-  if [ "$git_dirty" -gt 0 ] 2>/dev/null; then
-    printf '%b' " ${c_blue}(${branch}${c_reset} ${c_red}*${git_dirty}${c_reset}${c_blue})${c_reset}"
-  else
-    printf '%b' " ${c_blue}(${branch})${c_reset}"
+  git_extra=""
+  if [ "$git_ahead" -gt 0 ] 2>/dev/null; then
+    git_extra="$git_extra ${c_green}↑${git_ahead}${c_reset}"
   fi
+  if [ "$git_behind" -gt 0 ] 2>/dev/null; then
+    git_extra="$git_extra ${c_yellow}↓${git_behind}${c_reset}"
+  fi
+  if [ "$git_staged" -gt 0 ] 2>/dev/null; then
+    git_extra="$git_extra ${c_green}+${git_staged}${c_reset}"
+  fi
+  if [ "$git_modified" -gt 0 ] 2>/dev/null; then
+    git_extra="$git_extra ${c_yellow}~${git_modified}${c_reset}"
+  fi
+  if [ "$git_deleted" -gt 0 ] 2>/dev/null; then
+    git_extra="$git_extra ${c_red}-${git_deleted}${c_reset}"
+  fi
+  if [ "$git_untracked" -gt 0 ] 2>/dev/null; then
+    git_extra="$git_extra ${c_gray}?${git_untracked}${c_reset}"
+  fi
+  printf '%b' " ${c_blue}(${branch}${c_reset}${git_extra}${c_blue})${c_reset}"
 fi
 if [ -n "$node_ver" ]; then
   printf '%b' "$sep"
