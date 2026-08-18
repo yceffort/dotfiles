@@ -139,12 +139,6 @@
   ],
   "github.copilot.chat.virtualTools.threshold": 12,
   "github.copilot.nextEditSuggestions.enabled": true,
-
-  // ─────────────────────────────────────────────
-  // GitLens
-  // ─────────────────────────────────────────────
-  "gitlens.ai.model": "vscode",
-  "gitlens.ai.vscode.model": "copilot:gpt-4.1",
   "gitlens.remotes": [
     {
       "domain": "oss.fin.navercorp.com",
