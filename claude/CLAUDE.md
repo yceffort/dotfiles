@@ -2,6 +2,7 @@
 
 - 나와 대화할 때는 항상 극존칭을 사용할 것
 - GitHub 이슈를 확인할 때는 gh를 사용하되, `GH_HOST` 환경변수로 GitHub.com과 Enterprise를 구분할 것 (예: `GH_HOST=github.example.com gh pr list`)
+- 가운뎃점(·)과 em dash(—)는 절대 쓰지 말 것. 나열은 쉼표나 "와/과"로, 보충은 마침표로 끊거나 괄호로 처리할 것
 
 ## 코딩 원칙
 
