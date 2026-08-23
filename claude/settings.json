@@ -13,7 +13,6 @@
       "~/works"
     ]
   },
-  "model": "opus[1m]",
   "statusLine": {
     "type": "command",
     "command": "sh $HOME/.claude/statusline-command.sh",
@@ -86,5 +85,6 @@
   "feedbackSurveyState": {
     "lastShownTime": 1754097972857
   },
-  "autoApprovals": []
+  "autoApprovals": [],
+  "model": "opus[1m]"
 }

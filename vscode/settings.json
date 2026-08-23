@@ -16,6 +16,14 @@
   "[github-actions-workflow]": {
     "editor.defaultFormatter": "redhat.vscode-yaml",
   },
+  "[typescript]": {
+    "editor.formatOnPaste": false,
+    "editor.formatOnSaveMode": "file",
+  },
+  "[typescriptreact]": {
+    "editor.formatOnPaste": false,
+    "editor.formatOnSaveMode": "file",
+  },
 
   // ─────────────────────────────────────────────
   // Biome
@@ -53,7 +61,6 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit",
     "source.fixAll.markdownlint": "explicit",
-    "source.fixAll.prettier": "explicit",
     "source.fixAll.textlint": "explicit",
     "source.organizeImports": "explicit",
     "source.removeUnusedImports": "explicit",
@@ -101,7 +108,7 @@
   },
   "eslint.format.enable": true,
   "eslint.lintTask.enable": true,
-  "eslint.validate": ["javascript"],
+  "eslint.validate": ["javascript", "typescript", "typescriptreact"],
 
   // ─────────────────────────────────────────────
   // Explorer
@@ -193,7 +200,7 @@
   // Terminal
   // ─────────────────────────────────────────────
   // CONFLICT 해결: 기존 값 유지 (Nerd Font 아이콘 보존)
-  "terminal.integrated.fontFamily": "JetBrainsMono Nerd Font",
+  "terminal.integrated.fontFamily": "JetBrainsMono Nerd Font, 나눔고딕코딩",
   "terminal.integrated.inheritEnv": false,
   "terminal.integrated.shellIntegration.enabled": true,
   "terminal.integrated.smoothScrolling": true,
@@ -805,4 +812,5 @@
     },
   },
   "workbench.preferredLightColorTheme": "Islands Dark",
+  "yaml.disableSchemaDetection": [],
 }

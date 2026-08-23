@@ -5,3 +5,12 @@ Host *
   UseKeychain yes
   IdentityFile ~/.ssh/id_ed25519
 
+Host cs.animated-journey-6rxpxxp5wx6h4674.main
+	User codespace
+	ProxyCommand /opt/homebrew/bin/gh cs ssh -c animated-journey-6rxpxxp5wx6h4674 --stdio -- -i /Users/rnd-20260045-jayg/.ssh/codespaces.auto
+	UserKnownHostsFile=/dev/null
+	StrictHostKeyChecking no
+	LogLevel quiet
+	ControlMaster auto
+	IdentityFile /Users/rnd-20260045-jayg/.ssh/codespaces.auto
+

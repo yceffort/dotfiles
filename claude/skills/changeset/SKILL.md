@@ -1,6 +1,7 @@
 ---
 name: changeset
 description: 사용자가 "changeset 만들어줘", "changeset 생성", "버전 bump" 등으로 명시적으로 changeset 파일 생성을 요청할 때 사용. 변경사항을 분석해 .changeset/ 디렉토리에 파일을 만든다. 사용자가 요청하지 않은 상태에서 임의로 trigger하지 말 것.
+model: haiku
 ---
 
 현재 브랜치의 변경사항을 분석하여 적절한 changeset 파일을 `.changeset/` 디렉토리에 생성하라. 사용자의 추가 컨텍스트가 있으면 그것을 반영한다.

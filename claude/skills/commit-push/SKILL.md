@@ -1,6 +1,7 @@
 ---
-name: commit
+name: commit-push
 description: 사용자가 "commit", "커밋해줘", "커밋 만들어줘" 등으로 명시적으로 git commit 생성을 요청할 때 사용. 변경사항을 검토하고 아토믹하게 나누어 커밋을 생성한다. 사용자가 요청하지 않은 상태에서 임의로 trigger하지 말 것.
+model: haiku
 ---
 
 현재 git 상태를 확인하고, 변경된 파일들을 검토한 후 적절한 커밋 메시지와 함께 커밋을 생성하라.
