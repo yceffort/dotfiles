@@ -26,6 +26,7 @@ const LITERAL = [
   {id: 'stand-on', label: '위에 서 있다(rests on)', re: /위에 서 있/g},
   {id: 'honest', label: '정직한 확인/검증(honest check)', re: /정직한 (확인|검증|평가|비교)/g},
   {id: 'about', label: '~에 대해(about)', re: /에 대해서?도?/g},
+  {id: 'layer', label: '겹(layer)', re: /[한두세네여러] 겹|겹이[다었]/g},
   {id: 'accounting', label: '계상(→집계)', re: /(?<![설합])계상/g},
   {id: 'pacing', label: '페이싱(pacing→속도 조절)', re: /페이싱/g},
 ]
