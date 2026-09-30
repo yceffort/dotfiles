@@ -3,3 +3,7 @@
 # 전역 gitignore 무시
 !claude/
 !CLAUDE.md
+
+# Claude Code 스킬 동기화/삭제 임시 폴더
+claude/skills/.trash/
+claude/skills/synced/
