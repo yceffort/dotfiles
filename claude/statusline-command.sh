@@ -21,7 +21,6 @@ month_pct=$(printf '%s' "$input" | jq -r '.rate_limits.spend_limit.used_percenta
 month_reset=$(printf '%s' "$input" | jq -r '.rate_limits.spend_limit.resets_at // empty')
 
 tokens_in=$(printf '%s' "$input" | jq -r '.context_window.total_input_tokens // empty')
-tokens_out=$(printf '%s' "$input" | jq -r '.context_window.total_output_tokens // empty')
 cost=$(printf '%s' "$input" | jq -r '.cost.total_cost_usd // empty')
 
 duration_ms=$(printf '%s' "$input" | jq -r '.cost.total_duration_ms // empty')
@@ -164,10 +163,6 @@ if [ -n "$month_pct" ]; then
   printf '%b' "$(usage_color "$month_pct")${month_info}${c_reset}"
 fi
 
-if [ -n "$tokens_in" ] && [ -n "$tokens_out" ]; then
-  line2_sep
-  printf '%b' "${c_gray}↑$(fmt_tokens "$tokens_in") ↓$(fmt_tokens "$tokens_out")${c_reset}"
-fi
 if [ -n "$cost" ] && [ "$cost" != "0" ]; then
   line2_sep
   printf '%b' "${c_green}\$$(printf '%.2f' "$cost")${c_reset}"
@@ -179,6 +174,6 @@ if [ -n "$session_dur" ]; then
 fi
 if [ -n "$ctx_used" ]; then
   line2_sep
-  printf '%b' "$(usage_color "$ctx_used")context window: $(printf '%.0f' "$ctx_used")%${c_reset}"
+  printf '%b' "$(usage_color "$ctx_used")context window: $(printf '%.0f' "$ctx_used")%${tokens_in:+ ($(fmt_tokens "$tokens_in"))}${c_reset}"
 fi
 
