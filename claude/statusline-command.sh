@@ -1,10 +1,10 @@
 #!/bin/sh
 input=$(cat)
 
-model=$(echo "$input" | jq -r '.model.display_name // "unknown"')
-effort=$(echo "$input" | jq -r '.effort.level // empty')
+model=$(printf '%s' "$input" | jq -r '.model.display_name // "unknown"')
+effort=$(printf '%s' "$input" | jq -r '.effort.level // empty')
 [ -z "$effort" ] && effort=$(jq -r '.effortLevel // "medium"' "$HOME/.claude/settings.json" 2>/dev/null)
-dir=$(echo "$input" | jq -r '.workspace.current_dir // .cwd // ""')
+dir=$(printf '%s' "$input" | jq -r '.workspace.current_dir // .cwd // ""')
 dirname=$(basename "$dir")
 branch=$(git -C "$dir" --no-optional-locks symbolic-ref --short HEAD 2>/dev/null)
 now=$(date +%H:%M)
@@ -13,18 +13,18 @@ config_file="${CLAUDE_CONFIG_DIR:+$CLAUDE_CONFIG_DIR/.claude.json}"
 config_file="${config_file:-$HOME/.claude.json}"
 email=$(jq -r '.oauthAccount.emailAddress // empty' "$config_file" 2>/dev/null)
 
-five_pct=$(echo "$input" | jq -r '.rate_limits.five_hour.used_percentage // empty')
-five_reset=$(echo "$input" | jq -r '.rate_limits.five_hour.resets_at // empty')
-week_pct=$(echo "$input" | jq -r '.rate_limits.seven_day.used_percentage // empty')
-week_reset=$(echo "$input" | jq -r '.rate_limits.seven_day.resets_at // empty')
-month_pct=$(echo "$input" | jq -r '.rate_limits.monthly.used_percentage // empty')
-month_reset=$(echo "$input" | jq -r '.rate_limits.monthly.resets_at // empty')
+five_pct=$(printf '%s' "$input" | jq -r '.rate_limits.five_hour.used_percentage // empty')
+five_reset=$(printf '%s' "$input" | jq -r '.rate_limits.five_hour.resets_at // empty')
+week_pct=$(printf '%s' "$input" | jq -r '.rate_limits.seven_day.used_percentage // empty')
+week_reset=$(printf '%s' "$input" | jq -r '.rate_limits.seven_day.resets_at // empty')
+month_pct=$(printf '%s' "$input" | jq -r '.rate_limits.monthly.used_percentage // empty')
+month_reset=$(printf '%s' "$input" | jq -r '.rate_limits.monthly.resets_at // empty')
 
-tokens_in=$(echo "$input" | jq -r '.context_window.total_input_tokens // empty')
-tokens_out=$(echo "$input" | jq -r '.context_window.total_output_tokens // empty')
-cost=$(echo "$input" | jq -r '.cost.total_cost_usd // empty')
+tokens_in=$(printf '%s' "$input" | jq -r '.context_window.total_input_tokens // empty')
+tokens_out=$(printf '%s' "$input" | jq -r '.context_window.total_output_tokens // empty')
+cost=$(printf '%s' "$input" | jq -r '.cost.total_cost_usd // empty')
 
-duration_ms=$(echo "$input" | jq -r '.cost.total_duration_ms // empty')
+duration_ms=$(printf '%s' "$input" | jq -r '.cost.total_duration_ms // empty')
 if [ -n "$duration_ms" ] && [ "$duration_ms" != "0" ]; then
   elapsed=$(( duration_ms / 1000 ))
   if [ "$elapsed" -ge 3600 ]; then
@@ -34,7 +34,7 @@ if [ -n "$duration_ms" ] && [ "$duration_ms" != "0" ]; then
   fi
 fi
 
-ctx_used=$(echo "$input" | jq -r '.context_window.used_percentage // empty')
+ctx_used=$(printf '%s' "$input" | jq -r '.context_window.used_percentage // empty')
 
 
 git_counts=$(git -C "$dir" --no-optional-locks status --porcelain 2>/dev/null | awk '
