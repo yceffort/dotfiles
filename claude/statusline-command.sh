@@ -40,10 +40,10 @@ git_counts=$(git -C "$dir" --no-optional-locks status --porcelain 2>/dev/null | 
   NF==0 { next }
   {
     x=substr($0,1,1); y=substr($0,2,1)
-    if (x=="?") u++
-    else if (x=="D" || y=="D") d++
-    else if (x!=" ") s++
-    else m++
+    if (x=="?") { u++; next }
+    if (x=="D" || y=="D") d++
+    if (x!=" " && x!="D") s++
+    if (y=="M" || y=="T") m++
   }
   END { printf "%d %d %d %d", u+0, s+0, m+0, d+0 }
 ')
