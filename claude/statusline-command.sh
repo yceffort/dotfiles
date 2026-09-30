@@ -2,7 +2,8 @@
 input=$(cat)
 
 model=$(echo "$input" | jq -r '.model.display_name // "unknown"')
-effort=$(jq -r '.effortLevel // "medium"' "$HOME/.claude/settings.json" 2>/dev/null)
+effort=$(echo "$input" | jq -r '.effort.level // empty')
+[ -z "$effort" ] && effort=$(jq -r '.effortLevel // "medium"' "$HOME/.claude/settings.json" 2>/dev/null)
 dir=$(echo "$input" | jq -r '.workspace.current_dir // .cwd // ""')
 dirname=$(basename "$dir")
 branch=$(git -C "$dir" --no-optional-locks symbolic-ref --short HEAD 2>/dev/null)
