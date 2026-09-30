@@ -17,8 +17,8 @@ five_pct=$(printf '%s' "$input" | jq -r '.rate_limits.five_hour.used_percentage 
 five_reset=$(printf '%s' "$input" | jq -r '.rate_limits.five_hour.resets_at // empty')
 week_pct=$(printf '%s' "$input" | jq -r '.rate_limits.seven_day.used_percentage // empty')
 week_reset=$(printf '%s' "$input" | jq -r '.rate_limits.seven_day.resets_at // empty')
-month_pct=$(printf '%s' "$input" | jq -r '.rate_limits.monthly.used_percentage // empty')
-month_reset=$(printf '%s' "$input" | jq -r '.rate_limits.monthly.resets_at // empty')
+month_pct=$(printf '%s' "$input" | jq -r '.rate_limits.spend_limit.used_percentage // empty')
+month_reset=$(printf '%s' "$input" | jq -r '.rate_limits.spend_limit.resets_at // empty')
 
 tokens_in=$(printf '%s' "$input" | jq -r '.context_window.total_input_tokens // empty')
 tokens_out=$(printf '%s' "$input" | jq -r '.context_window.total_output_tokens // empty')
@@ -157,7 +157,7 @@ if [ -n "$week_pct" ]; then
 fi
 if [ -n "$month_pct" ]; then
   line2_sep
-  month_info="월간: $(printf '%.0f' "$month_pct")%"
+  month_info="Spend: $(printf '%.0f' "$month_pct")%"
   if [ -n "$month_reset" ]; then
     month_info="$month_info (~$(date -r "${month_reset%.*}" '+%m/%d %H:%M'))"
   fi
